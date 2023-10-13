@@ -1,81 +1,108 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #423e3e;
+div {
+    display: flex; /* Set the container to flex layout */
+    justify-content: center; /* Center the plans horizontally */
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping to the next line when there's not enough space */
+    padding: 2rem;
+
     text-align: center;
-    margin: 0;
-    padding: 0;
-  }
+    min-height: 70vh;
+}
   
-  /* Style the header */
   h1 {
-    font-size: 32px;
+    font-size: 2.5rem;
     color: #333;
-    margin-top: 20px;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    position: absolute; /* Position the h1 element absolutely */
+    top: 0%; /* Move it to the vertical center of its parent */
+    left: 40%; /* Move it to the horizontal center of its parent */
+    transform: translate(-50%, -50%); /* Center it both vertically and horizontally */
+    animation: bounce 1s infinite; /* Add a bounce animation */
   }
-  
-  /* Style the Pricing Plans container */
-  div {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+
+  /* Style for each pricing plan card */
+  .plan, .premplan, .goldplan {
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    margin: 1rem;
+    max-width: 320px;
+    transition: transform 0.2s, background-color 0.2s;
+    position: relative;
+    overflow: hidden;
   }
   
-  /* Style the Pricing Plan boxes */
-  .plan, .premplan, .goldplan {
-    padding: 20px;
-    margin: 20px 0;
-    background-color: #f0f5ff;
-    border: 2px solid #4d90fe;
-    border-radius: 8px;
-    transition: transform 0.2s;
+  .plan:hover {
+    transform: scale(1.05);
+    background-color: #f4f4f4; /* Lighten the background color on hover */
   }
   
-  .plan:hover, .premplan:hover, .goldplan:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  .premplan:hover {
+    transform: scale(1.05);
+    background-color: #a4ffd5; /* Change the background color on hover */
   }
   
-  /* Style the "Select Plan" link button */
-  .plan a, .premplan a, .goldplan a {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 4px;
-    margin-top: 10px;
-    transition: background-color 0.3s;
+  .goldplan:hover {
+    transform: scale(1.05);
+    background-color: #f9d766; /* Change the background color on hover */
   }
   
-  .plan a:hover, .premplan a:hover, .goldplan a:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Style plan details */
-  .plan h2, .premplan h2, .goldplan h2 {
-    color: #007BFF;
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .plan p, .premplan p, .goldplan p {
+
+  h2 {
+    font-size: 2rem;
     color: #333;
-    font-size: 16px;
-    margin-bottom: 10px;
+    margin-bottom: 0.5rem; /* Adjust margin for better spacing */
+  }
+
+  p {
+    color: #555;
+    margin-bottom: 1.5rem; /* Adjust margin for better spacing */
+    font-size: 1.1rem;
   }
   
-  /* Add some responsive design for smaller screens */
-  @media (max-width: 768px) {
-    div {
-      padding: 10px;
-    }
   
-    .plan, .premplan, .goldplan {
-      border-width: 1px;
-    }
+  /* Style for Premium and Gold plans buttons */
+  a {
+    text-decoration: none;
+    color: #fff;
+    background-color: #e02626;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+    font-weight: bold;
+    transition: background-color 0.2s;
+  }
+  
+  a:hover {
+    background-color: #2a77a6;
+  }
+  
+  /* Custom ribbon for indicating "Currently Using" */
+  .plan::before {
+    content: "Currently Using";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #4caf50;
+    color: #fff;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    transform: rotate(-45deg);
   }
   
