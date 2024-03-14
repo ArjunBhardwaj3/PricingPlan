@@ -6,7 +6,7 @@ function PricingPlan() {
   return (
     
     <div>
-      <h1> This is a Test code of SIT223 Jenkins!</h1>
+      <h1>  Test code of SIT223 Jenkins!</h1>
       <h1>Pricing Plans</h1>
      
       <div className="plan">
