@@ -1,0 +1,114 @@
+pipeline {
+    agent any // Use any available agent for executing this pipeline
+    
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Dependency installation...' // Print message indicating dependency installation
+                echo 'Building application...' // Print message indicating application building
+                git branch: 'main', url: 'https://github.com/ArjunBhardwaj3/PricingPlan.git' // Clone the repository from GitHub
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing...' // Print message indicating testing phase
+                
+                script {
+                    // Define PowerShell command to send email notification
+                    def powershellCommand = """
+                        \$SMTPServer = "smtp.gmail.com"
+                        \$SMTPFrom = "arjunbhardwaj219@gmail.com"
+                        \$SMTPTo = "arjunbhardwaj219@gmail.com"
+                        \$SMTPSubject = "Subject successful."
+                        \$SMTPBody = "Body successful."
+                        \$SMTPUsername = "arjunbhardwaj219@gmail.com"
+                        \$SMTPPassword = "fsrm pmqx wfpw qbtt"
+    
+                        Send-MailMessage -From \$SMTPFrom -to \$SMTPTo -Subject \$SMTPSubject -Body \$SMTPBody -SmtpServer \$SMTPServer -UseSsl -Port 587 -Credential (New-Object System.Management.Automation.PSCredential \$SMTPUsername, (ConvertTo-SecureString -AsPlainText \$SMTPPassword -Force))
+                    """
+                    powershell(powershellCommand) // Execute PowerShell command
+                }
+            }
+        }
+        stage('Code Analysis') {
+            steps {
+                echo 'Code analysis...' // Print message indicating code analysis phase
+            }
+        }
+        stage('Security') {
+            steps {
+                echo 'Security scans...' // Print message indicating security scan phase
+                
+                script {
+                    // Define PowerShell command to send email notification
+                    def powershellCommand = """
+                        \$SMTPServer = "smtp.gmail.com"
+                        \$SMTPFrom = "arjunbhardwaj219@gmail.com"
+                        \$SMTPTo = "arjunbhardwaj219@gmail.com"
+                        \$SMTPSubject = "Security checks passed."
+                        \$SMTPBody = "Pipeline cleared security checks."
+                        \$SMTPUsername = "arjunbhardwaj219@gmail.com"
+                        \$SMTPPassword = "fsrm pmqx wfpw qbtt"
+    
+                        Send-MailMessage -From \$SMTPFrom -to \$SMTPTo -Subject \$SMTPSubject -Body \$SMTPBody -SmtpServer \$SMTPServer -UseSsl -Port 587 -Credential (New-Object System.Management.Automation.PSCredential \$SMTPUsername, (ConvertTo-SecureString -AsPlainText \$SMTPPassword -Force))
+                    """
+                    powershell(powershellCommand) // Execute PowerShell command
+                }
+            }
+        }
+        stage('Deploy Staging') {
+            steps {
+                echo 'Staging deployment...' // Print message indicating staging deployment phase
+            }
+        }
+        stage('Integration Test') {
+            steps {
+                echo 'Integration testing...' // Print message indicating integration testing phase
+            }
+        }
+        stage('Deploy Production') {
+            steps {
+                echo 'Production deployment...' // Print message indicating production deployment phase
+            }
+        }
+    }
+    
+    post { // Define post-build actions
+        success { // Actions to execute if the pipeline is successful
+            script {
+                // Define PowerShell command to send email notification
+                def powershellCommand = """
+                    \$SMTPServer = "smtp.gmail.com"
+                    \$SMTPFrom = "arjunbhardwaj219@gmail.com"
+                    \$SMTPTo = "arjunbhardwaj219@gmail.com"
+                    \$SMTPSubject = "Success."
+                    \$SMTPBody = "Pipeline executed successfully."
+                    \$SMTPUsername = "arjunbhardwaj219@gmail.com"
+                    \$SMTPPassword = "fsrm pmqx wfpw qbtt"
+    
+                    Send-MailMessage -From \$SMTPFrom -to \$SMTPTo -Subject \$SMTPSubject -Body \$SMTPBody -SmtpServer \$SMTPServer -UseSsl -Port 587 -Credential (New-Object System.Management.Automation.PSCredential \$SMTPUsername, (ConvertTo-SecureString -AsPlainText \$SMTPPassword -Force))
+                """
+                powershell(powershellCommand) // Execute PowerShell command
+            }
+            echo 'Success!' // Print success message
+        }
+        failure { // Actions to execute if the pipeline fails
+            script {
+                // Define PowerShell command to send email notification
+                def powershellCommand = """
+                    \$SMTPServer = "smtp.gmail.com"
+                    \$SMTPFrom = "arjunbhardwaj219@gmail.com"
+                    \$SMTPTo = "arjunbhardwaj219@gmail.com"
+                    \$SMTPSubject = "Failure"
+                    \$SMTPBody = "Pipeline failed to execute."
+                    \$SMTPUsername = "arjunbhardwaj219@gmail.com"
+                    \$SMTPPassword = "fsrm pmqx wfpw qbtt"
+    
+                    Send-MailMessage -From \$SMTPFrom -to \$SMTPTo -Subject \$SMTPSubject -Body \$SMTPBody -SmtpServer \$SMTPServer -UseSsl -Port 587 -Credential (New-Object System.Management.Automation.PSCredential \$SMTPUsername, (ConvertTo-SecureString -AsPlainText \$SMTPPassword -Force))
+                """
+                powershell(powershellCommand) // Execute PowerShell command
+            }
+            echo 'Failure! Check for errors.' // Print failure message
+        }
+    }
+}
