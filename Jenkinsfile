@@ -7,6 +7,7 @@ pipeline {
                 echo 'Stage 1: Build'
                 echo 'Description: Build the React application using a bundler like Webpack or Vite to compile and package the code.'
                 echo 'Tool used: Webpack or Vite'
+                echo "update"
                 git branch: 'main', url: 'https://github.com/ArjunBhardwaj3/PricingPlan.git'
             }
         }
