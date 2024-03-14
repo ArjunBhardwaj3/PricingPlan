@@ -6,7 +6,7 @@ function PricingPlan() {
   return (
     
     <div>
-      <h1> This is the Test code for SIT223 - Task6.2C</h1>
+      <h1> This is a Test code for SIT223 Jenkins</h1>
       <h1>Pricing Plans</h1>
      
       <div className="plan">
