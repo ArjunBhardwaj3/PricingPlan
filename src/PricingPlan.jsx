@@ -4,7 +4,7 @@ import './PricingPlan.css'
 
 function PricingPlan() {
   return (
-    
+    <h1></h1>
     <div>
      
       <h1>Pricing Plans</h1>
