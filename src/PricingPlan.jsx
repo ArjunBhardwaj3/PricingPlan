@@ -6,6 +6,7 @@ function PricingPlan() {
   return (
     
     <div>
+      <h1> This is Test code for SIT223 Task6.2C</h1>
       <h1>Pricing Plans</h1>
      
       <div className="plan">
